@@ -1,0 +1,2 @@
+rootProject.name = "Batch26RoomDatabase"
+include ':app'

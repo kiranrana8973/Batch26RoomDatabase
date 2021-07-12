@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Batch26RoomDatabase</string>
+    <string name="registeruser">No account ?<u>signup here</u>.</string>
+
+</resources>
