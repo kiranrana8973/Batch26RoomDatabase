@@ -11,13 +11,15 @@
         android:theme="@style/Theme.Batch26RoomDatabase">
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".DashboardActivity" />
-        <activity android:name=".SplashActivity" />
-        <activity android:name=".RegisterActivity">
+        <activity android:name=".SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".RegisterActivity">
+
         </activity>
     </application>
 
