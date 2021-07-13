@@ -6,7 +6,15 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.textfield.TextInputEditText
+import com.kiran.batch26roomdatabase.db.StudentDB
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var etUsername: TextInputEditText
@@ -27,6 +35,33 @@ class LoginActivity : AppCompatActivity() {
 
         tvRegister.setOnClickListener {
             startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
+        }
+
+
+        btnLogin.setOnClickListener {
+            login()
+        }
+    }
+
+    private fun login() {
+        val username = etUsername.text.toString()
+        val password = etPassword.text.toString()
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val user = StudentDB.getInstance(this@LoginActivity)
+                .getUserDAO().checkUser(username, password)
+
+            if(user == null){
+                withContext(Main){
+                    Toast.makeText(this@LoginActivity, "Either usename or password is incorrect", Toast.LENGTH_SHORT).show()
+                }
+            }else{
+                startActivity(Intent(
+                    this@LoginActivity,
+                    DashboardActivity::class.java
+                ))
+            }
+
         }
     }
 }
